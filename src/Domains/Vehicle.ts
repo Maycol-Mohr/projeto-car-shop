@@ -3,7 +3,7 @@ class Vehicle {
   protected model: string;
   protected year: number;
   protected color: string;
-  protected status: boolean;
+  protected status = false;
   protected buyValue: number;
     
   constructor(
@@ -18,7 +18,7 @@ class Vehicle {
     this.model = model;
     this.year = year;
     this.color = color;
-    this.status = status;
+    this.status = status || false;
     this.buyValue = buyValue;
   }
     
