@@ -1,4 +1,4 @@
-import { Model, Schema, model, models } from 'mongoose';
+import { Model, Schema, model, models, isValidObjectId } from 'mongoose';
 import ICar from '../Interfaces/ICar';
   
 class CarODM {
@@ -27,7 +27,11 @@ class CarODM {
   }
 
   public async findCarsById(id: string): Promise<ICar | null> {
-    return this.model.findById(id);
+    if (!isValidObjectId(id)) {
+      throw new Error('Invalid mongo id');
+    }
+    const findId = await this.model.findById(id);
+    return findId;
   }
 }
   

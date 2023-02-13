@@ -46,7 +46,6 @@ class CarController {
       return this.res.status(200).json(car);
     } catch (error) {
       return this.res.status(404).json({ message: (error as Error).message });
-      // this.next(error);
     }
   }
 }
