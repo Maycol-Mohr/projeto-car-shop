@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import CarController from '../Controllers/CarController';
+import MotorcycleController from '../Controllers/MotoController';
 import validatedCarId from '../Middlewares/ValidateCarId';
 
 const routes = Router();
@@ -24,6 +25,11 @@ routes.put(
   '/cars/:id',
   validatedCarId,
   (req, res, next) => new CarController(req, res, next).updateCar(),
+);
+
+routes.post(
+  '/motorcycles',
+  (req, res, next) => new MotorcycleController(req, res, next).createMotorcycle(),
 );
   
 export default routes;
