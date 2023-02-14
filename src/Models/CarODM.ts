@@ -33,6 +33,14 @@ class CarODM {
     const findId = await this.model.findById(id);
     return findId;
   }
+
+  public async updateCar(_id: string, newCar: Partial<ICar>): Promise<ICar | null> {
+    if (!isValidObjectId(_id)) {
+      throw new Error('Invalid mongo id');
+    }
+    const findId = await this.model.findByIdAndUpdate({ _id }, { ...newCar }, { new: true });
+    return findId;
+  }
 }
   
 export default CarODM;
