@@ -16,23 +16,23 @@ class MotorcycleService {
     return this.createMotorcycleDomain(newMotorcycle);
   }
 
-  //   public async getAllCars() {
-  //     const carODM = new CarODM();
-  //     const cars = await carODM.find();
-  //     const carArray = cars.map((car) =>
-  //       this.createCarDomain(car));
-  //     return carArray;
-  //   }
+  public async getAllMotorcycles() {
+    const motorcycleODM = new MotorcycleODM();
+    const motorcycles = await motorcycleODM.find();
+    const motorcycleArray = motorcycles.map((motorcycle) =>
+      this.createMotorcycleDomain(motorcycle));
+    return motorcycleArray;
+  }
 
-  //   public async getCarById(id: string) {
-  //     const carODM = new CarODM();
-  //     const car = await carODM.findCarsById(id);
-  //     if (car === null) {
-  //       throw new Error('Car not found');
-  //     }
-  //     const carId = new Car(car);
-  //     return carId;
-  //   }
+  public async getMotorcycleById(id: string) {
+    const motorcycleODM = new MotorcycleODM();
+    const motorcycle = await motorcycleODM.findMotorcycleById(id);
+    if (motorcycle === null) {
+      throw new Error('Motorcycle not found');
+    }
+    const motorcycleId = new Motorcycle(motorcycle);
+    return motorcycleId;
+  }
 
 //   public async updateCar(id: string, newCar: Partial<ICar>) {
 //     const carODM = new CarODM();

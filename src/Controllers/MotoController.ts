@@ -34,20 +34,20 @@ class MotorcycleController {
     }
   }
 
-  //   public async getAllCars() {
-  //     const cars = await this.service.getAllCars();
-  //     return this.res.status(200).json(cars);
-  //   }
+  public async getAllMotorcycles() {
+    const motorcycle = await this.service.getAllMotorcycles();
+    return this.res.status(200).json(motorcycle);
+  }
 
-  //   public async getCarsById() {
-  //     const { id } = this.req.params;
-  //     try {
-  //       const car = await this.service.getCarById(id);
-  //       return this.res.status(200).json(car);
-  //     } catch (error) {
-  //       return this.res.status(404).json({ message: (error as Error).message });
-  //     }
-  //   }
+  public async getMotorcycleById() {
+    const { id } = this.req.params;
+    try {
+      const motorcycle = await this.service.getMotorcycleById(id);
+      return this.res.status(200).json(motorcycle);
+    } catch (error) {
+      return this.res.status(404).json({ message: (error as Error).message });
+    }
+  }
 
 //   public async updateCar() {
 //     const { id } = this.req.params;

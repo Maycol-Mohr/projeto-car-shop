@@ -2,6 +2,7 @@ import { Router } from 'express';
 import CarController from '../Controllers/CarController';
 import MotorcycleController from '../Controllers/MotoController';
 import validatedCarId from '../Middlewares/ValidateCarId';
+import validatedMotorcycleId from '../Middlewares/ValidateMotorcycleId';
 
 const routes = Router();
 
@@ -30,6 +31,17 @@ routes.put(
 routes.post(
   '/motorcycles',
   (req, res, next) => new MotorcycleController(req, res, next).createMotorcycle(),
+);
+
+routes.get(
+  '/motorcycles',
+  (req, res, next) => new MotorcycleController(req, res, next).getAllMotorcycles(),
+);
+
+routes.get(
+  '/motorcycles/:id', 
+  validatedMotorcycleId,
+  (req, res, next) => new MotorcycleController(req, res, next).getMotorcycleById(),
 );
   
 export default routes;

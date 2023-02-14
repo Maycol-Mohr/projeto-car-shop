@@ -15,6 +15,26 @@ abstract class AbstractODM<T> {
   public async create(obj: T): Promise<T> {
     return this.model.create({ ...obj });
   }
+
+  public async find(): Promise<T[]> {
+    return this.model.find();
+  }
+
+  public async findById(id: string): Promise<T | null> {
+    if (!isValidObjectId(id)) {
+      throw new Error('Invalid mongo id');
+    }
+    const findId = await this.model.findById(id);
+    return findId;
+  }
+
+  // public async updateCar(_id: string, object: Partial<T>): Promise<T | null> {
+  //   if (!isValidObjectId(_id)) {
+  //     throw new Error('Invalid mongo id');
+  //   }
+  //   const findId = await this.model.findByIdAndUpdate({ _id }, { ...object }, { new: true });
+  //   return findId;
+  // }
   
   public async update(id: string, obj: Partial<T>): Promise<T | null> {
     if (!isValidObjectId(id)) throw Error('Invalid Mongo id');

@@ -1,4 +1,4 @@
-import { Model, Schema, model, models } from 'mongoose';
+import { Model, Schema, model, models, isValidObjectId } from 'mongoose';
 import IMotorcycle from '../Interfaces/IMotorcycle';
   
 class MotorcycleODM {
@@ -22,17 +22,17 @@ class MotorcycleODM {
     return this.model.create({ ...motorcycle });
   }
 
-  //   public async find(): Promise<ICar[]> {.
-  //     return this.model.find();
-  //   }
+  public async find(): Promise<IMotorcycle[]> {
+    return this.model.find();
+  }
 
-  //   public async findCarsById(id: string): Promise<ICar | null> {
-  //     if (!isValidObjectId(id)) {
-  //       throw new Error('Invalid mongo id');
-  //     }
-  //     const findId = await this.model.findById(id);
-  //     return findId;
-  //   }
+  public async findMotorcycleById(id: string): Promise<IMotorcycle | null> {
+    if (!isValidObjectId(id)) {
+      throw new Error('Invalid mongo id');
+    }
+    const findId = await this.model.findById(id);
+    return findId;
+  }
 
 //   public async updateCar(_id: string, newCar: Partial<ICar>): Promise<ICar | null> {
 //     if (!isValidObjectId(_id)) {
