@@ -34,15 +34,15 @@ class MotorcycleService {
     return motorcycleId;
   }
 
-//   public async updateCar(id: string, newCar: Partial<ICar>) {
-//     const carODM = new CarODM();
-//     const car = await carODM.findCarsById(id);
-//     if (car === null) {
-//       throw new Error('Car not found');
-//     }
-//     const carUpdated = await carODM.updateCar(id, newCar);
-//     return this.createCarDomain(carUpdated);
-//   }
+  public async updateMotorcycle(id: string, newMotorcycle: Partial<IMotorcycle>) {
+    const motorcycleODM = new MotorcycleODM();
+    const motorcycle = await motorcycleODM.findMotorcycleById(id);
+    if (motorcycle === null) {
+      throw new Error('Motorcycle not found');
+    }
+    const motorcycleUpdated = await motorcycleODM.updateMotorcycle(id, newMotorcycle);
+    return this.createMotorcycleDomain(motorcycleUpdated);
+  }
 }
 
 export default MotorcycleService;

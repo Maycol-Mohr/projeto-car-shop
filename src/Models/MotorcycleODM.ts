@@ -34,13 +34,16 @@ class MotorcycleODM {
     return findId;
   }
 
-//   public async updateCar(_id: string, newCar: Partial<ICar>): Promise<ICar | null> {
-//     if (!isValidObjectId(_id)) {
-//       throw new Error('Invalid mongo id');
-//     }
-//     const findId = await this.model.findByIdAndUpdate({ _id }, { ...newCar }, { new: true });
-//     return findId;
-//   }
+  public async updateMotorcycle(
+    _id: string, 
+    newMotorcycle: Partial<IMotorcycle>,
+  ): Promise<IMotorcycle | null> {
+    if (!isValidObjectId(_id)) {
+      throw new Error('Invalid mongo id');
+    }
+    const findId = await this.model.findByIdAndUpdate({ _id }, { ...newMotorcycle }, { new: true });
+    return findId;
+  }
 }
   
 export default MotorcycleODM;
