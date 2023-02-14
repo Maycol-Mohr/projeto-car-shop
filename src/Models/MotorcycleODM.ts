@@ -22,7 +22,7 @@ class MotorcycleODM {
     return this.model.create({ ...motorcycle });
   }
 
-  //   public async find(): Promise<ICar[]> {
+  //   public async find(): Promise<ICar[]> {.
   //     return this.model.find();
   //   }
 
