@@ -1,5 +1,7 @@
 import { Model, Schema, model, models, isValidObjectId } from 'mongoose';
 import IMotorcycle from '../Interfaces/IMotorcycle';
+
+const INVALID_MONGO_ID = 'Invalid mongo id';
   
 class MotorcycleODM {
   private schema: Schema;
@@ -28,7 +30,7 @@ class MotorcycleODM {
 
   public async findMotorcycleById(id: string): Promise<IMotorcycle | null> {
     if (!isValidObjectId(id)) {
-      throw new Error('Invalid mongo id');
+      throw new Error(INVALID_MONGO_ID);
     }
     const findId = await this.model.findById(id);
     return findId;
@@ -39,10 +41,17 @@ class MotorcycleODM {
     newMotorcycle: Partial<IMotorcycle>,
   ): Promise<IMotorcycle | null> {
     if (!isValidObjectId(_id)) {
-      throw new Error('Invalid mongo id');
+      throw new Error(INVALID_MONGO_ID);
     }
     const findId = await this.model.findByIdAndUpdate({ _id }, { ...newMotorcycle }, { new: true });
     return findId;
+  }
+
+  public async deleteMotorcycle(id: string): Promise<void | null> {
+    if (!isValidObjectId(id)) {
+      throw new Error(INVALID_MONGO_ID);
+    }
+    await this.model.deleteOne({ id });
   }
 }
   

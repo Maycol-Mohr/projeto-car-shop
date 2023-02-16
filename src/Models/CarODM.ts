@@ -2,6 +2,8 @@
 import { Schema, isValidObjectId } from 'mongoose';
 import ICar from '../Interfaces/ICar';
 import AbstractODM from './AbstractODM';
+
+const INVALID_MONGO_ID = 'Invalid mongo id';
   
 class CarODM extends AbstractODM<ICar> {
   // private schema: Schema;
@@ -32,7 +34,7 @@ class CarODM extends AbstractODM<ICar> {
 
   public async findCarsById(id: string): Promise<ICar | null> {
     if (!isValidObjectId(id)) {
-      throw new Error('Invalid mongo id');
+      throw new Error(INVALID_MONGO_ID);
     }
     const findId = await this.model.findById(id);
     return findId;
@@ -40,10 +42,17 @@ class CarODM extends AbstractODM<ICar> {
 
   public async updateCar(_id: string, newCar: Partial<ICar>): Promise<ICar | null> {
     if (!isValidObjectId(_id)) {
-      throw new Error('Invalid mongo id');
+      throw new Error(INVALID_MONGO_ID);
     }
     const findId = await this.model.findByIdAndUpdate({ _id }, { ...newCar }, { new: true });
     return findId;
+  }
+
+  public async deleteCar(id: string): Promise<void | null> {
+    if (!isValidObjectId(id)) {
+      throw new Error(INVALID_MONGO_ID);
+    }
+    await this.model.deleteOne({ id });
   }
 }
   

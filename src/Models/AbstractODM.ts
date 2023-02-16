@@ -37,13 +37,17 @@ abstract class AbstractODM<T> {
   // }
   
   public async update(id: string, obj: Partial<T>): Promise<T | null> {
-    if (!isValidObjectId(id)) throw Error('Invalid Mongo id');
-  
-    return this.model.findByIdAndUpdate(
-      { _id: id },
-      { ...obj } as UpdateQuery<T>,
-      { new: true },
-    );
+    if (!isValidObjectId(id)) {
+      throw Error('Invalid Mongo id');
+    }
+    return this.model.findByIdAndUpdate({ _id: id }, { ...obj } as UpdateQuery<T>, { new: true });
+  }
+
+  public async delete(id: string): Promise<void | null> {
+    if (!isValidObjectId(id)) {
+      throw new Error('Invalid Mongo id');
+    }
+    await this.model.deleteOne({ id });
   }
 }
   
